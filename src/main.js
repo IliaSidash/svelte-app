@@ -4,6 +4,7 @@ import page from 'page'
 let app = new App({
 	target: document.body,
 	props: {
+        page: null
 	}
 });
 

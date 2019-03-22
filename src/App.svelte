@@ -7,4 +7,6 @@
 		color: purple;
 	}
 </style>
-<script></script>
+<script>
+  export let page;
+</script>
