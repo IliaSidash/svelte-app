@@ -6,8 +6,8 @@ import livereload from 'rollup-plugin-livereload';
 import copy from 'rollup-plugin-copy-glob';
 import alias from 'rollup-plugin-alias';
 import postcssRollup from 'rollup-plugin-postcss';
-import { postcss } from 'svelte-preprocess';
-import postcssImport from 'postcss-import'; 
+import autoPreprocess from 'svelte-preprocess';
+import postcssImport from 'postcss-import';
 import postcssPresetEnv from 'postcss-preset-env';
 import postcssPxToRem from 'postcss-pxtorem';
 import path from 'path';
@@ -19,35 +19,35 @@ export default {
   output: [
     // ES module version, for modern browsers
     {
-      dir: "public/module",
-      format: "esm",
+      dir: 'public/module',
+      format: 'esm',
       sourcemap: true,
-      name: "app"
+      name: 'app'
     },
     // SystemJS version, for older browsers
     {
-      dir: "public/nomodule",
-      format: "system",
+      dir: 'public/nomodule',
+      format: 'system',
       sourcemap: true,
-      name: "app"
+      name: 'app'
     }
   ],
   plugins: [
     svelte({
       // enable run-time checks when not in production
       dev: true,
-      preprocess: [
-        postcss({
+      preprocess: autoPreprocess({
+        postcss: {
           plugins: [
             postcssImport,
             postcssPresetEnv,
-            postcssPxToRem({replace: true})
+            postcssPxToRem({ replace: true })
           ]
-        })
-      ],
+        }
+      }),
       // we'll extract any component CSS out into
       // a separate file — better for performance
-      css: css => {
+      css: (css) => {
         css.write('public/styles/bundle.css');
       }
     }),
@@ -59,9 +59,9 @@ export default {
       plugins: [
         postcssImport,
         postcssPresetEnv,
-        postcssPxToRem({replace: true})
+        postcssPxToRem({ replace: true })
       ],
-      extensions: [ '.css' ],
+      extensions: ['.css'],
       extract: 'public/styles/global.css'
     }),
     resolve(),
@@ -72,18 +72,21 @@ export default {
     // https://github.com/rollup/rollup-plugin-commonjs
     commonjs(),
     livereload({
-      watch:'public/**/*'
+      watch: 'public/**/*'
     }),
-    
-    copy([
-      {files: 'src/assets/**/*.*', dest: 'public/assets'},
-      {files: 'src/index.html', dest: 'public'},
-      /*{files: 'src/styles/global.css', dest: 'public/styles'},
+
+    copy(
+      [
+        { files: 'src/assets/**/*.*', dest: 'public/assets' },
+        { files: 'src/index.html', dest: 'public' }
+        /*{files: 'src/styles/global.css', dest: 'public/styles'},
       {files: 'src/styles/raleway.css', dest: 'public/styles'}*/
-    ],
-    {
-      verbose: true, watch: true
-    }),
+      ],
+      {
+        verbose: true,
+        watch: true
+      }
+    ),
     serve({
       contentBase: 'public',
       host: 'localhost',
