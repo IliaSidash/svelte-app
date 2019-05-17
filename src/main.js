@@ -1,5 +1,6 @@
 import App from './App.svelte';
 import page from 'page'
+import './styles/global.css';
 
 let app = new App({
 	target: document.body,

@@ -1,8 +1,5 @@
 .DS_Store
 node_modules
-public/chunk*
-public/bundle*
-public/*.js
-public/*.map
+public/
 package-lock.json
 yarn.lock
