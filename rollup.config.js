@@ -66,10 +66,10 @@ export default {
     }),
     resolve(),
     // If you have external dependencies installed from
-		// npm, you'll most likely need these plugins. In
-		// some cases you'll need additional configuration —
-		// consult the documentation for details:
-		// https://github.com/rollup/rollup-plugin-commonjs
+    // npm, you'll most likely need these plugins. In
+    // some cases you'll need additional configuration —
+    // consult the documentation for details:
+    // https://github.com/rollup/rollup-plugin-commonjs
     commonjs(),
     livereload({
       watch:'public/**/*'
