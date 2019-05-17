@@ -4,7 +4,8 @@
 <svelte:component this={page} name="page" />
 <style>
 	h1 {
-		color: purple;
+		color: lch(53 105 40);
+		font-size: 15px;
 	}
 </style>
 <script>
