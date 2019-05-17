@@ -41,7 +41,7 @@ export default {
           plugins: [
             postcssImport,
             postcssPresetEnv,
-            postcssPxToRem()
+            postcssPxToRem(replace: true)
           ]
         })
       ],
@@ -59,7 +59,7 @@ export default {
       plugins: [
         postcssImport,
         postcssPresetEnv,
-        postcssPxToRem()
+        postcssPxToRem(replace: true)
       ],
       extensions: [ '.css' ],
       extract: 'public/styles/global.css'
@@ -89,5 +89,5 @@ export default {
       host: 'localhost',
       port: '5000'
     })
-	]
+  ]
 };
